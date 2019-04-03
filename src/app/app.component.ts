@@ -8,7 +8,7 @@ import { auth } from 'firebase/app';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Hint';
+  title = 'Hint2';
 
   constructor(public afAuth: AngularFireAuth) {
   }
