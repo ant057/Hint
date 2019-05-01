@@ -3,9 +3,9 @@
   <button (click)="logout()">Logout</button>
 </div>
 <ng-template #showLogin>
-  <p>Please login.</p>
-  <button (click)="login()">Login with Google</button>
-  <button (click)="logintwo()">Login with Email and Password</button>
+  <firebase-ui (signInSuccessWithAuthResult)="successCallback($event)" (signInFailure)="errorCallback($event)">
+  </firebase-ui>
+  im not logged in
 </ng-template>
 
 <router-outlet></router-outlet>
