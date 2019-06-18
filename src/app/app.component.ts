@@ -28,7 +28,7 @@ export class AppComponent implements OnDestroy {
     this.afAuth.auth.signOut();
   }
 
-  private firebaseAuthChangeListener(response) {
+  private firebaseAuthChangeListener(response: any) {
     // if needed, do a redirect in here
     if (response) {
       console.log('Logged in :)');
