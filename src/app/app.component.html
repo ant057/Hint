@@ -1,11 +1,7 @@
-<div *ngIf="afAuth.user | async as user; else showLogin">
-  <h1>Hello {{ user.displayName }}!</h1>
-  <button (click)="logout()">Logout</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">app component<br/>
+        <hint-auth></hint-auth>
+    </div>
+  </div>
 </div>
-<ng-template #showLogin>
-  <firebase-ui (signInSuccessWithAuthResult)="successCallback($event)" (signInFailure)="errorCallback($event)">
-  </firebase-ui>
-  im not logged in
-</ng-template>
-
-<router-outlet></router-outlet>

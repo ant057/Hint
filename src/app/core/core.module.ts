@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DataService } from './data.service';
+import { FirebaseService } from './data.service';
 
 import { HttpCacheService } from './http-cache.service';
 
@@ -17,7 +17,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   ],
   exports: [],
   providers: [
-    DataService,
+    FirebaseService,
     { provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true},
     { provide: HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true},
     { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true},

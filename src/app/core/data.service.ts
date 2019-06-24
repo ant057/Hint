@@ -1,14 +1,6 @@
 // angular
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-  AngularFirestoreCollection,
-  DocumentChangeAction,
-  Action,
-  DocumentSnapshotDoesNotExist,
-  DocumentSnapshotExists,
-} from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 
 import { environment } from '../../environments/environment';
@@ -22,6 +14,7 @@ import { map, tap, take, switchMap, mergeMap, expand, takeWhile } from 'rxjs/ope
 @Injectable()
 export class FirebaseService {
 
+  aMember: number = 1;
   constructor(private afs: AngularFirestore) { }
 
 }
