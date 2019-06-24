@@ -1,6 +1,7 @@
 // angular
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import * as firebase from 'firebase/app';
 
 import { environment } from '../../environments/environment';
@@ -11,10 +12,25 @@ import { map, tap, take, switchMap, mergeMap, expand, takeWhile } from 'rxjs/ope
 
 // Models
 
+
+export interface Item { name: string; }
+
 @Injectable()
 export class FirebaseService {
 
-  aMember: number = 1;
-  constructor(private afs: AngularFirestore) { }
+  private itemDoc: AngularFirestoreDocument<Item>;
+  item: Observable<Item>;
+
+  constructor(private afs: AngularFirestore) {
+    this.itemDoc = afs.doc<Item>('/household/GLjSz6fk3DNaxDZeWBQL');
+    this.item = this.itemDoc.valueChanges();
+  }
+  update(item: Item) {
+    this.itemDoc.update(item);
+  }
+
+  getItemVal() {
+    return this.item;
+  }
 
 }
