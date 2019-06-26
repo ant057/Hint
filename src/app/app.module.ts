@@ -16,6 +16,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { NavComponent } from './nav/nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddPaymentComponent } from './add-payment/add-payment.component';
+import { AddEventComponent } from './add-event/add-event.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppComponent,
     HomeComponent,
     NavComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddPaymentComponent,
+    AddEventComponent
   ],
   imports: [
     CoreModule,

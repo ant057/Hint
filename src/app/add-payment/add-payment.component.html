@@ -1,0 +1,23 @@
+<form [formGroup]="addPaymentForm" (ngSubmit)="onSubmit()">
+
+  <label>
+    Account Name:
+    <input type="text" formControlName="account">
+  </label>
+
+  <label>
+    Amount $:
+    <input type="number" formControlName="amount">
+  </label>
+
+  <label>
+    Description:
+    <input type="text" formControlName="description">
+  </label>
+
+  <label>
+    Payment Date:
+    <input type="date" formControlName="paymentDate">
+  </label>
+  <button type="submit" [disabled]="!addPaymentForm.valid">Submit</button>
+</form>
