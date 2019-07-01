@@ -1,7 +1,25 @@
 <div>
   home component
-  <div *ngIf="myValue$ | async as household" > {{household.Name}} 
-      <hint-add-payment></hint-add-payment>
-  </div>
 
-</div>
+  <!-- <nb-layout-header fixed>Hint</nb-layout-header> 
+
+    <nb-sidebar>
+      <hint-nav>
+      </hint-nav>
+    </nb-sidebar>
+
+    <nb-layout-column>
+      <div *ngIf="myValue$ | async as household"> <br/>{{household.Name}}
+
+        <router-outlet></router-outlet>
+        <hint-add-payment></hint-add-payment>
+        <hint-add-event></hint-add-event>
+      </div>
+    </nb-layout-column>
+-->
+  <div *ngIf="myValue$ | async as household"> <br />{{household.Name}}
+    <div class="row">
+      <div class="col-sm-6">test1</div>
+      <div class="col-sm-6">test2</div>
+    </div>
+  </div>

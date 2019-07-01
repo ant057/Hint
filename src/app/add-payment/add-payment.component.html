@@ -1,23 +1,34 @@
+<h3>Add Payment</h3>
 <form [formGroup]="addPaymentForm" (ngSubmit)="onSubmit()">
-
-  <label>
-    Account Name:
-    <input type="text" formControlName="account">
-  </label>
-
-  <label>
-    Amount $:
-    <input type="number" formControlName="amount">
-  </label>
-
-  <label>
-    Description:
-    <input type="text" formControlName="description">
-  </label>
-
-  <label>
-    Payment Date:
-    <input type="date" formControlName="paymentDate">
-  </label>
-  <button type="submit" [disabled]="!addPaymentForm.valid">Submit</button>
+  <div class="row">
+    <div class="col-md-12">
+      <label class="label">
+        Account Name:
+      </label>
+      <input nbInput fullWidth type="text" formControlName="account">
+    </div>
+    <div class="col-md-6">
+      <label class="label">
+        Payment Date:
+      </label>
+      <input nbInput fullWidth [nbDatepicker]="datepicker" formControlName="paymentDate">
+    </div>
+    <div class="col-md-6">
+      <label class="label">
+        Amount $:
+      </label>
+      <input nbInput fullWidth type="number" formControlName="amount">
+    </div>
+    <div class="col-md-12">
+      <label class="label">
+        Description:
+      </label>
+      <input nbInput fullWidth type="text" formControlName="description">
+    </div>
+    <br/>
+    <div class="col-md-12">
+      <button nbButton type="submit" [disabled]="!addPaymentForm.valid">Submit</button>
+    </div>
+  </div>
+  <nb-datepicker #datepicker></nb-datepicker>
 </form>

@@ -12,6 +12,10 @@ export const environment = {
     projectId: 'hint-8617a',
     storageBucket: 'hint-8617a.appspot.com',
     messagingSenderId: '404949477661'
+  },
+  windowConfig: {
+    hasBackdrop: true,
+    closeOnBackdropClick: true
   }
 };
 

@@ -6,13 +6,16 @@ import { FirebaseUIModule } from 'firebaseui-angular';
 import { firebaseUiAuthConfig } from '../firebase/firebaseui.config';
 
 import { AppRoutingModule } from '../app-routing.module';
+import { NbButtonModule} from '@nebular/theme';
 
 @NgModule({
-  declarations: [AuthComponent],
+  declarations: [
+    AuthComponent],
   imports: [
     CommonModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     AppRoutingModule,
+    NbButtonModule
   ],
   exports: [
     AppRoutingModule,

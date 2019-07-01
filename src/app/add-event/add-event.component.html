@@ -1,3 +1,76 @@
-<p>
-  add-event works!
-</p>
+<h3>Add Event</h3>
+<form [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-12">
+      <label class="label">
+        Event Name:
+      </label>
+      <input nbInput fullWidth type="text" formControlName="name">
+    </div>
+    <div class="col-md-6">
+      <label class="label">
+        Address 1:
+      </label>
+      <input nbInput fullWidth type="text" formControlName="add1">
+
+    </div>
+    <div class="col-md-6">
+      <label class="label">
+        Address 2:
+      </label>
+      <input nbInput fullWidth type="text" formControlName="add2">
+
+    </div>
+
+    <div class="col-md-4">
+      <label class="label">
+        City:
+      </label>
+      <input nbInput type="text" formControlName="city">
+
+    </div>
+    <div class="col-md-4">
+      <label class="label">
+        State:
+      </label>
+      <input nbInput type="text" formControlName="description">
+
+
+    </div>
+    <div class="col-md-4">
+      <label class="label">
+        Zip:
+      </label>
+      <input nbInput type="number" formControlName="zip">
+
+    </div>
+
+    <div class="col-md-8">
+      <label class="label">
+        Description:
+      </label>
+      <input type="text" nbInput fullWidth formControlName="description">
+
+    </div>
+
+    <div class="col-md-4">
+      <label class="label">
+        Date:
+      </label>
+      <input nbInput [nbDatepicker]="datepicker" formControlName="eventDate">
+
+    </div>
+
+    <div class="col-md-12">
+      <label class="label">
+        Type:
+      </label>
+      <input nbInput fullWidth type="radio" formControlName="eventType">
+
+    </div>
+    <br />
+    <div class="col-md-12">
+      <button nbButton type="submit" [disabled]="!addEventForm.valid">Submit</button></div>
+  </div>
+  <nb-datepicker #datepicker></nb-datepicker>
+</form>

@@ -8,8 +8,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AddPaymentComponent implements OnInit {
 
-  name = new FormControl('');
-
   addPaymentForm = new FormGroup({
     account: new FormControl(''),
     amount: new FormControl(''),

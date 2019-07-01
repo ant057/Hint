@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  /*{ path: 'hero/:id',      component: HeroDetailComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  /* { path: 'hero/:id',      component: HeroDetailComponent },
    {
     path: 'heroes',
     component: HeroListComponent,
@@ -13,7 +15,7 @@ const routes: Routes = [
   { path: '',
     redirectTo: '/heroes',
     pathMatch: 'full'
-  },*/
+  }, */
   { path: '**', component: HomeComponent }
 ];
 
