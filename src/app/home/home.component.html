@@ -17,9 +17,23 @@
       </div>
     </nb-layout-column>
 -->
-  <div *ngIf="myValue$ | async as household"> <br />{{household.Name}}
-    <div class="row">
-      <div class="col-sm-6">test1</div>
-      <div class="col-sm-6">test2</div>
+  <div *ngIf="myValue$ | async as household"> <br />{{household.Name}}</div>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div *ngIf="myValue">
+        <nb-card status="success">
+          <nb-card-header>{{myValue}}</nb-card-header>
+          <nb-card-body>
+            A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
+            Originally, nebula was a name for any diffuse astronomical object,
+            including galaxies beyond the Milky Way.<br/>
+            <img src="../../assets/cmslhvxgarsrplkbudqx.jpg" height="300" width="100%">
+          </nb-card-body>
+          <nb-card-footer>By Wikipedia</nb-card-footer>
+        </nb-card>
+      </div>
     </div>
+    <div class="col-sm-6">test2</div>
   </div>

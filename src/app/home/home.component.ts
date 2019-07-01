@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 export class HomeComponent implements OnInit {
 
   myValue$: Observable<Item>;
+  myValue: string = 'Annettes Home'
 
   constructor(private fbs: FirebaseService) { }
 

@@ -16,12 +16,13 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbButtonModule, NbInputModule,
   NbDatepickerModule, NbRadioModule, NbCardModule, NbMenuModule, NbActionsModule, NbWindowModule, 
-  NbListModule } from '@nebular/theme';
+  NbListModule, NbTooltipModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     NavComponent,
     DashboardComponent,
     AddPaymentComponent,
-    AddEventComponent
+    AddEventComponent,
+    CalendarComponent
   ],
   entryComponents: [
     AddPaymentComponent,
@@ -45,7 +47,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFireAuthModule,
     AngularFirestoreModule,
     // FlexLayoutModule,
-    NbThemeModule.forRoot(),
+    NbThemeModule.forRoot({ name: 'dark' }), 
     NbLayoutModule,
     NbSidebarModule.forRoot(),
     NbButtonModule,
@@ -58,7 +60,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     NbEvaIconsModule,
     NbActionsModule,
     NbWindowModule.forRoot(environment.windowConfig),
-    NbListModule
+    NbListModule,
+    NbTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,25 +11,18 @@ export class NavComponent implements OnInit {
   menuItems = [
     {
       title: 'Home',
+      icon: 'home-outline',
       link: '/home'
     },
     {
       title: 'Dashboard',
+      icon: 'grid-outline',
       link: '/dashboard'
     },
     {
-      title: 'Add New Item',
-      children: [
-        {
-          title: 'Event',
-          icon: 'person-outline',
-          link: [], // goes into angular `routerLink`
-        },
-        {
-          title: 'Payment',
-          // url: '#', // goes directly into `href` attribute
-        }
-      ],
+      title: 'Calendar',
+      icon: 'calendar-outline',
+      link: '/calendar'
     }
   ];
 

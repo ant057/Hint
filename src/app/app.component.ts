@@ -1,6 +1,6 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddPaymentComponent } from './add-payment/add-payment.component';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService, NbThemeService } from '@nebular/theme';
 import { AddEventComponent } from './add-event/add-event.component';
 
 
@@ -16,8 +16,8 @@ export class AppComponent implements OnDestroy {
     closeOnBackdropClick: true
   };
 
-  constructor(private windowService: NbWindowService) {
-
+  constructor(private windowService: NbWindowService, private themeService: NbThemeService) {
+    // this.themeService.changeTheme('cosmic');
   }
 
   ngOnDestroy() {

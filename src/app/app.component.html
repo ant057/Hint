@@ -7,18 +7,20 @@
   </div>
 </div>
 -->
-<hint-auth></hint-auth>
+
 <nb-layout>
 
-  <!-- <nb-layout-header subheader>
+  
+    <nb-layout-header subheader>
+      <h1>HintOS v1.01</h1>
+    </nb-layout-header> 
 
-    </nb-layout-header> -->
+  <nb-sidebar>
 
-  <nb-sidebar state="expanded">
-    <div>
-      <hint-nav>
-      </hint-nav>
-    </div>
+      <hint-auth></hint-auth>
+
+    <hint-nav>
+    </hint-nav>
   </nb-sidebar>
 
   <nb-layout-column>
@@ -26,10 +28,10 @@
       <nb-card>
         <nb-card-body>
           <nb-actions size="medium">
-            <nb-action icon="home-outline" link="/home"></nb-action>
-            <nb-action icon="grid-outline" link="/dashboard"></nb-action>
-            <nb-action icon="credit-card-outline" (click)="openAddPayment()"></nb-action>
-            <nb-action icon="calendar-outline" (click)="openAddEvent()"></nb-action>
+            <nb-action icon="credit-card-outline" nbTooltip="Add Payment" nbTooltipPlacement="top"
+              nbTooltipStatus="success" (click)="openAddPayment()"></nb-action>
+            <nb-action icon="calendar-outline" nbTooltip="Add Event" nbTooltipPlacement="top" nbTooltipStatus="success"
+              (click)="openAddEvent()"></nb-action>
           </nb-actions>
         </nb-card-body>
       </nb-card>

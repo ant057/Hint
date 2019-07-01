@@ -11,7 +11,7 @@ import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure } from '
 })
 export class AuthComponent implements OnDestroy {
   uiConfig = {
-    signInSuccessUrl: 'http://localhost:4200/',
+    signInSuccessUrl: '/',
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       auth.GoogleAuthProvider.PROVIDER_ID,
