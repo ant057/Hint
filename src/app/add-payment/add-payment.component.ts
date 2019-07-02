@@ -12,8 +12,12 @@ export class AddPaymentComponent implements OnInit {
     account: new FormControl(''),
     amount: new FormControl(''),
     description: new FormControl(''),
-    paymentDate: new FormControl('')
+    paymentDate: new FormControl(''),
+    recurringYN: new FormControl(),
+    recurringFrequency: new FormControl('Daily'),
+    occurrences: new FormControl('')
   });
+  selectedItem = 'Daily';
 
   constructor() { }
 
@@ -23,6 +27,10 @@ export class AddPaymentComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.addPaymentForm.value);
+  }
+
+  cbClick() {
+    console.log(this.addPaymentForm);
   }
 
 }

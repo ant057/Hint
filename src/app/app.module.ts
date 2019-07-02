@@ -16,7 +16,7 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbButtonModule, NbInputModule,
   NbDatepickerModule, NbRadioModule, NbCardModule, NbMenuModule, NbActionsModule, NbWindowModule, 
-  NbListModule, NbTooltipModule} from '@nebular/theme';
+  NbListModule, NbTooltipModule, NbCheckboxModule, NbSelectComponent, NbSelectModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 import { AngularFireModule } from '@angular/fire';
@@ -47,7 +47,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     // FlexLayoutModule,
-    NbThemeModule.forRoot({ name: 'dark' }), 
+    NbThemeModule.forRoot({ name: 'dark' }),
     NbLayoutModule,
     NbSidebarModule.forRoot(),
     NbButtonModule,
@@ -61,7 +61,9 @@ import { CalendarComponent } from './calendar/calendar.component';
     NbActionsModule,
     NbWindowModule.forRoot(environment.windowConfig),
     NbListModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbCheckboxModule,
+    NbSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

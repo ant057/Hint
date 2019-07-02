@@ -17,7 +17,10 @@ export class AddEventComponent implements OnInit {
     eventType: new FormControl(''),
     name: new FormControl(''),
     state: new FormControl(''),
-    zip: new FormControl('')
+    zip: new FormControl(''),
+    recurringYN: new FormControl(''),
+    recurringFrequency: new FormControl(''),
+    occurrences: new FormControl('')
   });
 
   constructor() { }

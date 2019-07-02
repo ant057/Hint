@@ -14,7 +14,16 @@ import { Observable } from 'rxjs';
 export class HomeComponent implements OnInit {
 
   myValue$: Observable<Item>;
-  myValue: string = 'Annettes Home'
+  myValue: string = 'Annettes Home';
+
+  homes: Array<any> = [
+    { name: 'annettes home 1'},
+    { name: 'annettes home 2'},
+    { name: 'annettes hoem 3'},
+    { name: 'annettes home 2'},
+    { name: 'annettes hoem 3'}
+  ];
+
 
   constructor(private fbs: FirebaseService) { }
 

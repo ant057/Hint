@@ -1,12 +1,34 @@
 <h3>Add Payment</h3>
 <form [formGroup]="addPaymentForm" (ngSubmit)="onSubmit()">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-9">
       <label class="label">
         Account Name:
       </label>
       <input nbInput fullWidth type="text" formControlName="account">
     </div>
+    <div class="col-md-3">
+      <label class="label">
+        Recurring?:
+      </label>
+      <nb-checkbox status="primary" formControlName="recurringYN">Primary</nb-checkbox>
+    </div>
+
+    <div *ngIf="addPaymentForm.value.recurringYN" class="col-md-6">
+      <label class="label">
+        Recurring Frequency:
+      </label>
+      <nb-select fullWidth formControlName="recurringFrequency" [(selected)]="selectedItem">
+        <nb-option value="Daily">Daily</nb-option>
+      </nb-select>
+    </div>
+    <div *ngIf="addPaymentForm.value.recurringYN" class="col-md-6">
+      <label class="label">
+        # Occurrences:
+      </label>
+      <input nbInput fullWidth type="number" formControlName="occurrences">
+    </div>
+
     <div class="col-md-6">
       <label class="label">
         Payment Date:
@@ -23,9 +45,12 @@
       <label class="label">
         Description:
       </label>
-      <input nbInput fullWidth type="text" formControlName="description">
+      <textarea nbInput fullWidth type="textarea" formControlName="description"></textarea>
     </div>
-    <br/>
+    <br />
+    <br />
+    <br />
+    <br />
     <div class="col-md-12">
       <button nbButton type="submit" [disabled]="!addPaymentForm.valid">Submit</button>
     </div>
