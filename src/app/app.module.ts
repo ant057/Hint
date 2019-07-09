@@ -5,6 +5,9 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -23,6 +26,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { CalendarComponent } from './calendar/calendar.component';
+import { fromEventPattern } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -63,7 +67,13 @@ import { CalendarComponent } from './calendar/calendar.component';
     NbListModule,
     NbTooltipModule,
     NbCheckboxModule,
-    NbSelectModule
+    NbSelectModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      name: 'Hint OS Dev tools',
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

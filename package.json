@@ -24,6 +24,8 @@
     "@angular/router": "~8.0.3",
     "@nebular/eva-icons": "^4.0.0-rc.8",
     "@nebular/theme": "^4.1.0",
+    "@ngrx/store": "^8.0.1",
+    "@ngrx/store-devtools": "^8.0.1",
     "core-js": "^2.5.4",
     "eva-icons": "^1.1.1",
     "firebase": "^5.9.2",
