@@ -15,7 +15,7 @@ import { AddEventComponent } from './add-event/add-event.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbButtonModule, NbInputModule,
-  NbDatepickerModule, NbRadioModule, NbCardModule, NbMenuModule, NbActionsModule, NbWindowModule, 
+  NbDatepickerModule, NbRadioModule, NbCardModule, NbMenuModule, NbActionsModule, NbWindowModule,
   NbListModule, NbTooltipModule, NbCheckboxModule, NbSelectComponent, NbSelectModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
