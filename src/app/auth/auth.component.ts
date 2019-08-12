@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
+import { Store, select } from '@ngrx/store';
+
 import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure } from 'firebaseui-angular';
 
 @Component({
@@ -9,22 +11,40 @@ import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure } from '
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnDestroy {
-  uiConfig = {
-    signInSuccessUrl: '/',
-    signInOptions: [
-      // Leave the lines as is for the providers you want to offer your users.
-      auth.GoogleAuthProvider.PROVIDER_ID,
-      auth.EmailAuthProvider.PROVIDER_ID
-    ]
-  };
+export class AuthComponent implements OnDestroy, OnInit {
 
-  constructor(public afAuth: AngularFireAuth) {
-    this.afAuth.authState.subscribe(this.firebaseAuthChangeListener);
+  username: string;
+
+  constructor(public afAuth: AngularFireAuth,
+              private store: Store<any>) {
+    this.afAuth.authState.subscribe(this.firebaseAuthChangeListener); // how to pass store to dispatch
+  }
+
+  ngOnInit() {
+    this.store.pipe(select('auth')).subscribe(
+      auth => { if (auth) { this.username = auth.userName; } }
+    );
+
+    if (this.afAuth.user) {
+        this.store.dispatch({
+          type: 'LOGIN_SUCCESS',
+          payload: 'anthony cunningham'
+        });
+      }
+  }
+
+  dispatchLogin() {
+    this.store.dispatch({
+      type: 'LOGIN_SUCCESS',
+      payload: 'anthony cunningham'
+    });
   }
 
   logout() {
     this.afAuth.auth.signOut();
+    this.store.dispatch({
+      type: 'LOGOUT_SUCCESS'
+    });
   }
 
   private firebaseAuthChangeListener(response: any) {
@@ -32,13 +52,21 @@ export class AuthComponent implements OnDestroy {
     if (response) {
       console.log('Logged in :)');
       console.log(response);
+      this.dispatchLogin();
+      // this.store.dispatch({
+      //   type: 'LOGIN_SUCCESS'
+      // });
     } else {
       console.log('Logged out :(');
     }
   }
 
   successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult) {
-    // console.log('success callback');
+    console.log('success callback');
+    // this.store.dispatch({
+    //   type: 'LOGIN_SUCCESS',
+    //   payload: signInSuccessData.authResult.user.displayName
+    // });
   }
 
   errorCallback(errorData: FirebaseUISignInFailure) {

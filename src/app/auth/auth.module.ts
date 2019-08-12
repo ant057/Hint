@@ -8,6 +8,9 @@ import { firebaseUiAuthConfig } from '../firebase/firebaseui.config';
 import { AppRoutingModule } from '../app-routing.module';
 import { NbButtonModule} from '@nebular/theme';
 
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './state/auth.reducer';
+
 @NgModule({
   declarations: [
     AuthComponent],
@@ -15,7 +18,8 @@ import { NbButtonModule} from '@nebular/theme';
     CommonModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     AppRoutingModule,
-    NbButtonModule
+    NbButtonModule,
+    StoreModule.forFeature('auth', reducer)
   ],
   exports: [
     AppRoutingModule,
