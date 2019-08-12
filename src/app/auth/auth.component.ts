@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
 import { Store, select } from '@ngrx/store';
+import * as fromApp from '../app.state';
 
 import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure } from 'firebaseui-angular';
 
@@ -16,12 +17,12 @@ export class AuthComponent implements OnDestroy, OnInit {
   username: string;
 
   constructor(public afAuth: AngularFireAuth,
-              private store: Store<any>) {
+              private store: Store<fromApp.State>) {
     this.afAuth.authState.subscribe(this.firebaseAuthChangeListener); // how to pass store to dispatch
   }
 
   ngOnInit() {
-    this.store.pipe(select('auth')).subscribe(
+    this.store.pipe(select(fromApp.ge)).subscribe(
       auth => { if (auth) { this.username = auth.userName; } }
     );
 

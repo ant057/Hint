@@ -5,8 +5,12 @@ export interface UserState {
     userName: string;
 }
 
+const initialState: UserState = {
+    SignedInUser: undefined,
+    userName: ''
+};
 
-export function reducer(state, action) {
+export function reducer(state = initialState, action): UserState {
 
     switch (action.type) {
 
@@ -23,8 +27,7 @@ export function reducer(state, action) {
             };
 
         default:
-            return {
-                state
-            };
+            return state;
+
     }
 }
