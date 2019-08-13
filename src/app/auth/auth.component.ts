@@ -4,6 +4,7 @@ import { auth } from 'firebase/app';
 
 import { Store, select } from '@ngrx/store';
 import * as fromApp from '../app.state';
+import * as fromAuth from './state/auth.reducer';
 
 import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure } from 'firebaseui-angular';
 
@@ -22,8 +23,8 @@ export class AuthComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.store.pipe(select(fromApp.ge)).subscribe(
-      auth => { if (auth) { this.username = auth.userName; } }
+    this.store.pipe(select(fromAuth.getSignedInUser)).subscribe(
+      signedInUser => { if (signedInUser) { this.username = signedInUser.userName; } }
     );
 
     if (this.afAuth.user) {
