@@ -1,5 +1,11 @@
 import { User } from '../../models/auth/user';
+import * as fromRoot from '../../app.state';
+
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+
+export interface State extends fromRoot.State {
+    auth: UserState;
+}
 
 export interface UserState {
     SignedInUser: User;
@@ -8,14 +14,14 @@ export interface UserState {
 
 const initialState: UserState = {
     SignedInUser: undefined,
-    userName: ''
+    userName: undefined
 };
 
 const getAuthFeatureState = createFeatureSelector<UserState>('auth');
 
 export const getSignedInUser = createSelector(
     getAuthFeatureState,
-    state => state.SignedInUser
+    state => state.userName
 );
 
 export function reducer(state = initialState, action): UserState {
@@ -30,7 +36,7 @@ export function reducer(state = initialState, action): UserState {
         case 'LOGOUT_SUCCESS':
             return {
                 ...state,
-                userName: undefined
+                userName: action.payload
             };
 
         default:
