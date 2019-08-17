@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { User } from '../models/auth/user';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
@@ -8,6 +9,8 @@ import * as fromAuth from './state/auth.reducer';
 import * as authActions from './state/auth.actions';
 
 import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure } from 'firebaseui-angular';
+import { pipe } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'hint-auth',
@@ -23,49 +26,21 @@ export class AuthComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.afAuth.authState.subscribe(this.firebaseAuthChangeListener); // how to pass store to dispatch
+    // sub to auth observable TODO: unsub
+    this.afAuth.authState.pipe(
+      tap(resp => console.log(resp)),
+      map(response => { if (response) {this.store.dispatch(new authActions.LoginSuccess(response.displayName)); }}
+    )).subscribe(); // how to pass store to dispatch
+
+    // sub to store
     this.store.pipe(select(fromAuth.getSignedInUser)).subscribe(
-      signedInUser => { if (signedInUser) { this.username = signedInUser; } }
+      signedInUser => { { this.username = signedInUser; } }
     );
-    // console.log('current user');
-    // console.log(this.afAuth.auth.currentUser);
-
-    // if (this.afAuth.user) {
-    //      this.store.dispatch({
-    //       type: 'LOGIN_SUCCESS',
-    //       payload: this.afAuth.auth.currentUser.displayName
-    //      });
-    //    }
-  }
-
-  dispatchLogin() {
-    this.store.dispatch(new authActions.LoginSuccess('Anthony Cunningham'));
   }
 
   logout() {
     this.afAuth.auth.signOut();
     this.store.dispatch(new authActions.LogoutSuccess());
-  }
-
-  public firebaseAuthChangeListener(response: any) {
-    // if needed, do a redirect in here
-    if (response) {
-      console.log('Logged in :)');
-      console.log(response);
-      this.store.dispatch(new authActions.LoginSuccess(response.displayName));
-      // this.dispatchLogin();
-      // this.store.dispatch({
-      //     type: 'LOGIN_SUCCESS',
-      //     payload: response.displayName
-      //  });
-    } else {
-      console.log('Logged out :(');
-      this.store.dispatch(new authActions.LogoutSuccess());
-    }
-  }
-
-  checkCurrentUser() {
-    console.log(this.afAuth.auth.currentUser);
   }
 
   successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult) {
