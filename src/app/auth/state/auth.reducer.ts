@@ -1,4 +1,5 @@
 import { User } from '../../models/auth/user';
+import { AuthActions, AuthActionTypes } from './auth.actions';
 import * as fromRoot from '../../app.state';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
@@ -24,20 +25,36 @@ export const getSignedInUser = createSelector(
     state => state.userName
 );
 
-export function reducer(state = initialState, action): UserState {
+export function reducer(state = initialState, action: AuthActions): UserState {
     switch (action.type) {
 
-        case 'LOGIN_SUCCESS':
+        case AuthActionTypes.LoginSuccess:
             return {
                 ...state,
                 userName: action.payload
             };
 
-        case 'LOGOUT_SUCCESS':
+        case AuthActionTypes.LogoutSuccess:
             return {
                 ...state,
-                userName: action.payload
+                userName: undefined
             };
+
+        // case AuthActionTypes.SetInitialDefaultValues:
+        //     return {
+        //         ...state,
+        //         SignedInUser: {
+        //             // default values
+        //             // id: 0
+        //             // name: 'Anthony'
+        //         }
+        //     };
+
+        // case AuthActionTypes.SetAnObject:
+        //     return {
+        //         ...state,
+        //         SignedInUser: { ...action.payload }
+        //     };
 
         default:
             return state;

@@ -5,6 +5,7 @@ import { auth } from 'firebase/app';
 import { Store, select } from '@ngrx/store';
 import * as fromApp from '../app.state';
 import * as fromAuth from './state/auth.reducer';
+import * as authActions from './state/auth.actions';
 
 import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure } from 'firebaseui-angular';
 
@@ -38,18 +39,12 @@ export class AuthComponent implements OnDestroy, OnInit {
   }
 
   dispatchLogin() {
-    this.store.dispatch({
-      type: 'LOGIN_SUCCESS',
-      payload: 'anthony cunningham'
-    });
+    this.store.dispatch(new authActions.LoginSuccess('Anthony Cunningham'));
   }
 
   logout() {
     this.afAuth.auth.signOut();
-    this.store.dispatch({
-      type: 'LOGOUT_SUCCESS',
-      payload: 'logged out'
-    });
+    this.store.dispatch(new authActions.LogoutSuccess());
   }
 
   public firebaseAuthChangeListener(response: any) {
@@ -57,14 +52,15 @@ export class AuthComponent implements OnDestroy, OnInit {
     if (response) {
       console.log('Logged in :)');
       console.log(response);
+      this.store.dispatch(new authActions.LoginSuccess(response.displayName));
       // this.dispatchLogin();
-      this.store.dispatch({
-          type: 'LOGIN_SUCCESS',
-          payload: response.displayName
-       });
+      // this.store.dispatch({
+      //     type: 'LOGIN_SUCCESS',
+      //     payload: response.displayName
+      //  });
     } else {
       console.log('Logged out :(');
-      console.log(response);
+      this.store.dispatch(new authActions.LogoutSuccess());
     }
   }
 
@@ -74,10 +70,7 @@ export class AuthComponent implements OnDestroy, OnInit {
 
   successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult) {
     console.log('success callback');
-    this.store.dispatch({
-      type: 'LOGIN_SUCCESS',
-      payload: signInSuccessData.authResult.user.displayName
-    });
+    this.store.dispatch(new authActions.LoginSuccess(signInSuccessData.authResult.user.displayName));
   }
 
   errorCallback(errorData: FirebaseUISignInFailure) {
