@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { CoreModule } from './core/core.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module'; 
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';

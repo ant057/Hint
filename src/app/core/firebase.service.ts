@@ -18,14 +18,26 @@ export class FirebaseService {
   constructor(private afs: AngularFirestore) {
   }
 
+  getEvents() {
+    return this.afs.collection('/events').snapshotChanges();
+  }
+
   getHouseholds() {
     return this.afs.collection('/household').snapshotChanges();
   }
 
+  getPayments() {
+    return this.afs.collection('/payments').snapshotChanges();
+  }
+
+  getUsers() {
+    return this.afs.collection('/users').snapshotChanges();
+  }
+
   createPayment(value) {
-    return this.afs.collection('payments').add({
+    return this.afs.collection('/payments').add({
       account: value.account,
-      Amount: value.amount,
+      amount: value.amount,
       description: value.description
     });
   }
