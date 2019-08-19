@@ -51,7 +51,7 @@ import { fromEventPattern } from 'rxjs';
     AngularFireAuthModule,
     AngularFirestoreModule,
     // FlexLayoutModule,
-    NbThemeModule.forRoot({ name: 'dark' }),
+    NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbSidebarModule.forRoot(),
     NbButtonModule,

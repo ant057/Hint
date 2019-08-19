@@ -25,11 +25,11 @@ export class AppComponent implements OnDestroy {
   }
 
   private openAddPayment() {
-    this.windowService.open(AddPaymentComponent);
+    this.windowService.open(AddPaymentComponent, { title: `Add Payment` });
   }
 
   private openAddEvent() {
-    this.windowService.open(AddEventComponent);
+    this.windowService.open(AddEventComponent, { title: `Add Event` });
   }
 
 }

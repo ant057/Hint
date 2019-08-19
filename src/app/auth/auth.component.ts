@@ -28,7 +28,6 @@ export class AuthComponent implements OnDestroy, OnInit {
   ngOnInit() {
     // sub to auth observable TODO: unsub
     this.afAuth.authState.pipe(
-      tap(resp => console.log(resp)),
       map(response => { if (response) {this.store.dispatch(new authActions.LoginSuccess(response.displayName)); }}
     )).subscribe(); // how to pass store to dispatch
 

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 
-import { FirebaseService } from './data.service';
+import { FirebaseService } from './firebase.service';
 
 import { HttpCacheService } from './http-cache.service';
 

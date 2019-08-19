@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 // services
-import { FirebaseService, Item } from '../core/data.service';
+import { FirebaseService } from '../core/firebase.service';
 
 // rxjs
 import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'hint-home',
@@ -13,8 +14,8 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  myValue$: Observable<Item>;
   myValue: string = 'Annettes Home';
+  households = Array<any>();
 
   homes: Array<any> = [
     { name: 'annettes home 1'},
@@ -24,11 +25,14 @@ export class HomeComponent implements OnInit {
     { name: 'annettes hoem 3'}
   ];
 
-
-  constructor(private fbs: FirebaseService) { }
+  constructor(private firestore: FirebaseService) { }
 
   ngOnInit() {
-    this.myValue$ = this.fbs.getItemVal();
+    this.firestore.getHouseholds().pipe(
+      tap(res => console.log(res)),
+      map(res => this.households = res
+    ))
+    .subscribe();
   }
 
 }

@@ -1,6 +1,4 @@
-
-
-  <!-- <nb-layout-header fixed>Hint</nb-layout-header> 
+<!-- <nb-layout-header fixed>Hint</nb-layout-header> 
 
     <nb-sidebar>
       <hint-nav>
@@ -16,19 +14,34 @@
       </div>
     </nb-layout-column>
 -->
-<div class="row justify-content-center">
-    <div class="col-md-4" *ngFor="let home of homes">
-      <div *ngIf="myValue">
-        <nb-card status="success">
-          <nb-card-header>{{myValue}}</nb-card-header>
-          <nb-card-body>
-            A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-            Originally, nebula was a name for any diffuse astronomical object,
-            including galaxies beyond the Milky Way.<br />
-            <img src="../../assets/cmslhvxgarsrplkbudqx.jpg" height="300" width="100%">
-          </nb-card-body>
-          <nb-card-footer>By Wikipedia</nb-card-footer>
-        </nb-card>
-      </div>
+<!-- <div class="row justify-content-center">
+  <div class="col-md-4" *ngFor="let home of homes">
+    <div *ngIf="myValue">
+      <nb-card status="success">
+        <nb-card-header>{{myValue}}</nb-card-header>
+        <nb-card-body>
+          A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
+          Originally, nebula was a name for any diffuse astronomical object,
+          including galaxies beyond the Milky Way.<br />
+          <img src="../../assets/cmslhvxgarsrplkbudqx.jpg" height="300" width="100%">
+        </nb-card-body>
+        <nb-card-footer>By Wikipedia</nb-card-footer>
+      </nb-card>
     </div>
+  </div>
+</div> -->
+
+<div class="row justify-content-center">
+  <div class="col-md-4" *ngFor="let home of households">
+    <nb-card status="success">
+      <nb-card-header>{{home.payload.doc.data().Name}}</nb-card-header>
+      <nb-card-body>
+        A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
+        Originally, nebula was a name for any diffuse astronomical object,
+        including galaxies beyond the Milky Way.<br />
+        <img src="../../assets/cmslhvxgarsrplkbudqx.jpg" height="300" width="100%">
+      </nb-card-body>
+      <nb-card-footer>By Wikipedia</nb-card-footer>
+    </nb-card>
+  </div>
 </div>

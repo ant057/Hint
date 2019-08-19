@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
+
+import { Observable } from 'rxjs';
+import { FirebaseService } from '../core/firebase.service';
 
 @Component({
   selector: 'hint-add-payment',
@@ -19,7 +23,9 @@ export class AddPaymentComponent implements OnInit {
   });
   selectedItem = 'Daily';
 
-  constructor() { }
+  constructor(private firestore: FirebaseService) {
+  }
+
 
   ngOnInit() {
   }
@@ -27,6 +33,13 @@ export class AddPaymentComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.addPaymentForm.value);
+
+    this.firestore.createPayment(this.addPaymentForm.value)
+    .then(
+      res => {
+        this.addPaymentForm.reset();
+      }
+    );
   }
 
   cbClick() {
