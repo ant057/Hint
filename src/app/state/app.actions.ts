@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Lists } from '../models/app/list';
 
 export enum AppActionTypes {
     LoadLists = '[Load Lists] Try',
@@ -15,7 +16,7 @@ export class LoadLists implements Action {
 export class LoadListsSuccess implements Action {
     readonly type = AppActionTypes.LoadListsSuccess;
 
-    constructor(public payload: string) { }
+    constructor(public payload: Lists[]) { }
 }
 
 export class LoadListsError implements Action {

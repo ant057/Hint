@@ -1,41 +1,42 @@
 import { AppActions, AppActionTypes } from './app.actions';
+import { Lists } from '../models/app/list';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { PRIMARY_OUTLET } from '@angular/router';
 
 export interface AppState {
-    paymentFrequncies: Array<string>;
+    lists: Lists[];
 }
 
 const initialState: AppState = {
-    paymentFrequncies: undefined
+    lists: undefined
 };
 
 const getAppFeatureState = createFeatureSelector<AppState>('app');
+// export const getLists = state => state.lists;
 
-export const getPaymentFrequenciesList = createSelector(
-    getAppFeatureState,
-    state => state.paymentFrequncies
-);
+export const getLists = createSelector(
+     getAppFeatureState,
+     state => state.lists
+ );
 
 export function reducer(state = initialState, action: AppActions): AppState {
     switch (action.type) {
 
         case AppActionTypes.LoadLists:
             return {
-                ...state,
-                paymentFrequncies: action.payload
+                ...state
             };
 
         case AppActionTypes.LoadListsSuccess:
             return {
                 ...state,
-                userName: undefined
+                lists: action.payload
             };
 
         case AppActionTypes.LoadListsError:
             return {
-                ...state,
-                userName: undefined
+                ...state
             };
 
         default:

@@ -34,7 +34,7 @@ export class FirebaseService {
     return this.afs.collection('/users').snapshotChanges();
   }
 
-  getLists(ist) {
+  getLists() {
     return this.afs.collection(`/lists`).valueChanges();
   }
 
