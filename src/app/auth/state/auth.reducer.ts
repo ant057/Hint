@@ -1,6 +1,6 @@
 import { User } from '../../models/auth/user';
 import { AuthActions, AuthActionTypes } from './auth.actions';
-import * as fromRoot from '../../app.state';
+import * as fromRoot from '../../state/app.state';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 

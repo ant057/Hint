@@ -34,11 +34,20 @@ export class FirebaseService {
     return this.afs.collection('/users').snapshotChanges();
   }
 
+  getLists(ist) {
+    return this.afs.collection(`/lists`).valueChanges();
+  }
+
   createPayment(value) {
     return this.afs.collection('/payments').add({
-      account: value.account,
-      amount: value.amount,
-      description: value.description
+      Account: value.account,
+      Amount: value.amount,
+      Description: value.description,
+      PaymentDate: value.paymentDate,
+      Occurrences: value.occurrences,
+      RecurringFrequency: value.recurringFrequency,
+      RecurringYN: value.recurringYN,
+      UserId: 'G3LkTagze1by9jFarqjiksEAfel1'
     });
   }
 }

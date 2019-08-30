@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
 import { Store, select } from '@ngrx/store';
-import * as fromApp from '../app.state';
+import * as fromApp from '../state/app.state';
 import * as fromAuth from './state/auth.reducer';
 import * as authActions from './state/auth.actions';
 
