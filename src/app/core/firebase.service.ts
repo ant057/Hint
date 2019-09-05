@@ -26,12 +26,20 @@ export class FirebaseService {
     return this.afs.collection('/household').snapshotChanges();
   }
 
+  getMyHouseholds(uid: string) {
+    return this.afs.collection('/household', ref => ref.where('UserID' , '==', uid)).snapshotChanges();
+  }
+
   getPayments() {
     return this.afs.collection('/payments').snapshotChanges();
   }
 
   getUsers() {
     return this.afs.collection('/users').snapshotChanges();
+  }
+
+  getMyUser(uid: string) {
+    return this.afs.collection('/users', ref => ref.where('UserID', '==', uid)).snapshotChanges();
   }
 
   getLists() {

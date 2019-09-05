@@ -9,20 +9,24 @@ export interface State extends fromRoot.State {
 }
 
 export interface UserState {
-    SignedInUser: User;
-    userName: string;
+    User: User;
+    uid: string;
 }
 
 const initialState: UserState = {
-    SignedInUser: undefined,
-    userName: undefined
+    User: undefined,
+    uid: undefined
 };
 
 const getAuthFeatureState = createFeatureSelector<UserState>('auth');
 
+export const getuid = createSelector(
+    getAuthFeatureState,
+    state => state.uid
+);
 export const getSignedInUser = createSelector(
     getAuthFeatureState,
-    state => state.userName
+    state => state.User
 );
 
 export function reducer(state = initialState, action: AuthActions): UserState {
@@ -31,13 +35,13 @@ export function reducer(state = initialState, action: AuthActions): UserState {
         case AuthActionTypes.LoginSuccess:
             return {
                 ...state,
-                userName: action.payload
+                uid: action.payload
             };
 
         case AuthActionTypes.LogoutSuccess:
             return {
                 ...state,
-                userName: undefined
+                uid: undefined
             };
 
         // case AuthActionTypes.SetInitialDefaultValues:

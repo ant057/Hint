@@ -9,7 +9,8 @@ import * as authActions from './state/auth.actions';
 
 import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure } from 'firebaseui-angular';
 import { pipe } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, switchMap } from 'rxjs/operators';
+import { FirebaseService } from '../core/firebase.service';
 
 @Component({
   selector: 'hint-auth',
@@ -18,21 +19,23 @@ import { map, tap } from 'rxjs/operators';
 })
 export class AuthComponent implements OnDestroy, OnInit {
 
-  username: string;
+  uid: string;
+  user: User;
 
   constructor(public afAuth: AngularFireAuth,
-              private store: Store<fromAuth.State>) {
+              private store: Store<fromAuth.State>,
+              private firestore: FirebaseService) {
   }
 
   ngOnInit() {
     // sub to auth observable TODO: unsub
     this.afAuth.authState.pipe(
-      map(response => { if (response) {this.store.dispatch(new authActions.LoginSuccess(response.displayName)); }}
+      map(response => { if (response) {this.store.dispatch(new authActions.LoginSuccess(response.uid)); }}
     )).subscribe(); // how to pass store to dispatch
 
     // sub to store
-    this.store.pipe(select(fromAuth.getSignedInUser)).subscribe(
-      signedInUser => { { this.username = signedInUser; } }
+    this.store.pipe(select(fromAuth.getuid)).subscribe(
+      uid => { if (uid) { this.uid = uid; this.user = this.firestore.getMyUser(uid); }} // TODO: user db load from effect. dispatch action
     );
   }
 
@@ -43,7 +46,7 @@ export class AuthComponent implements OnDestroy, OnInit {
 
   successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult) {
     console.log('success callback');
-    this.store.dispatch(new authActions.LoginSuccess(signInSuccessData.authResult.user.displayName));
+    this.store.dispatch(new authActions.LoginSuccess(signInSuccessData.authResult.user.uid));
   }
 
   errorCallback(errorData: FirebaseUISignInFailure) {

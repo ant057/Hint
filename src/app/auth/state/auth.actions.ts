@@ -8,6 +8,9 @@ export enum AuthActionTypes {
     Logout = '[Logout] Try',
     LogoutSuccess = '[Logout] Successful Logout',
     LogoutError = '[Logout] Error Login',
+    LoadUser = '[Load User] Try',
+    LoadUserSuccess = '[Load User] Success',
+    LoadUserError = '[Load User] Error'
 }
 
 export class Login implements Action {
@@ -46,9 +49,30 @@ export class LogoutError implements Action {
     constructor(public payload: string) { }
 }
 
+export class LoadUser implements Action {
+    readonly type = AuthActionTypes.LoadUser;
+
+    constructor() { }
+}
+
+export class LoadUserSuccess implements Action {
+    readonly type = AuthActionTypes.LoadUserSuccess;
+
+    constructor(public payload: User) { }
+}
+
+export class LoadUserError implements Action {
+    readonly type = AuthActionTypes.LoadUserError;
+
+    constructor(public payload: string) { }
+}
+
 export type AuthActions = LoginSuccess
     | Login
     | LoginError
     | Logout
     | LogoutSuccess
-    | LogoutError;
+    | LogoutError
+    | LoadUser
+    | LoadUserSuccess
+    | LoadUserError;

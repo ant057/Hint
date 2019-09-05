@@ -14,7 +14,6 @@ import { map, tap } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  myValue: string = 'Annettes Home';
   households = Array<any>();
 
   homes: Array<any> = [

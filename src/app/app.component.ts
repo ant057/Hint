@@ -17,27 +17,40 @@ import { Lists } from './models/app/list';
 export class AppComponent implements OnDestroy, OnInit {
 
   lists: Lists[];
+  theme: string;
 
   constructor(private windowService: NbWindowService,
               private themeService: NbThemeService,
-              private store: Store<fromApp.AppState> ) {
-    // this.themeService.changeTheme('cosmic');
+              private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit() {
     this.store.dispatch(new appActions.LoadLists());
     this.store.pipe(select(fromApp.getLists)).subscribe((lists: Lists[]) => this.lists = lists);
+
+    this.theme = this.themeService.currentTheme;
+  }
+
+  cycleTheme() {
+    switch (this.themeService.currentTheme) {
+      case 'default': this.themeService.changeTheme('dark'); break;
+      case 'dark': this.themeService.changeTheme('corporate'); break;
+      case 'corporate': this.themeService.changeTheme('cosmic'); break;
+      case 'cosmic': this.themeService.changeTheme('default'); break;
+    }
+
+    this.theme = this.themeService.currentTheme;
   }
 
   ngOnDestroy() {
 
   }
 
-  private openAddPayment() {
+  openAddPayment() {
     this.windowService.open(AddPaymentComponent, { title: `Add Payment` });
   }
 
-  private openAddEvent() {
+  openAddEvent() {
     this.windowService.open(AddEventComponent, { title: `Add Event` });
   }
 
