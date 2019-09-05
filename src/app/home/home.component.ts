@@ -1,11 +1,13 @@
+// core
 import { Component, OnInit } from '@angular/core';
-
-// services
-import { FirebaseService } from '../core/firebase.service';
 
 // rxjs
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+
+// ngrx store
+import { select, Store } from '@ngrx/store';
+import * as fromAuth from '../auth/state/auth.reducer';
 
 @Component({
   selector: 'hint-home',
@@ -14,6 +16,7 @@ import { map, tap } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
+  uid: string;
   households = Array<any>();
 
   homes: Array<any> = [
@@ -24,14 +27,17 @@ export class HomeComponent implements OnInit {
     { name: 'annettes hoem 3'}
   ];
 
-  constructor(private firestore: FirebaseService) { }
+  constructor(private store: Store<fromAuth.State>) { }
 
   ngOnInit() {
-    this.firestore.getHouseholds().pipe(
-      tap(res => console.log(res)),
-      map(res => this.households = res
-    ))
-    .subscribe();
+
+    this.store.pipe(select(fromAuth.getuid)).subscribe(
+      uid => { this.uid = uid; }
+    );
+
+    // to store household in state.. or not to
+    // thinking yes: create effect and dispatch action
+
   }
 
 }

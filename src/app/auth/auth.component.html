@@ -1,10 +1,9 @@
  <!-- <div *ngIf="afAuth.user | async as user; else showLogin">
   <span><h3>Hello {{ user.displayName }}!  <button nbButton size="small" status="warning" (click)="logout()">Logout</button></h3></span>
 </div> -->
-<div *ngIf="uid; else showLogin">
-    <span><h3>Hello {{ uid }}!  <button nbButton size="small" status="warning" (click)="logout()">Logout</button></h3></span>
+<div *ngIf="user; else showLogin">
+    <h4>Hello {{ user.firstName }}!  <button nbButton size="small" status="warning" (click)="logout()">Logout</button></h4>
   </div>
-  {{user}}
 <ng-template #showLogin>
   <firebase-ui (signInSuccessWithAuthResult)="successCallback($event)" (signInFailure)="errorCallback($event)">
   </firebase-ui>

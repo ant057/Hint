@@ -1,16 +1,22 @@
+// angular core
 import { Component, OnInit, OnDestroy } from '@angular/core';
+
+// models
 import { User } from '../models/auth/user';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
+// ngrx store
 import { Store, select } from '@ngrx/store';
 import * as fromAuth from './state/auth.reducer';
 import * as authActions from './state/auth.actions';
 
+// angular ui
 import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure } from 'firebaseui-angular';
+import { AngularFireAuth } from '@angular/fire/auth';
+
+// rxjs
 import { pipe } from 'rxjs';
 import { map, tap, switchMap } from 'rxjs/operators';
-import { FirebaseService } from '../core/firebase.service';
 
 @Component({
   selector: 'hint-auth',
@@ -23,19 +29,30 @@ export class AuthComponent implements OnDestroy, OnInit {
   user: User;
 
   constructor(public afAuth: AngularFireAuth,
-              private store: Store<fromAuth.State>,
-              private firestore: FirebaseService) {
+              private store: Store<fromAuth.State>) {
   }
 
   ngOnInit() {
     // sub to auth observable TODO: unsub
     this.afAuth.authState.pipe(
-      map(response => { if (response) {this.store.dispatch(new authActions.LoginSuccess(response.uid)); }}
-    )).subscribe(); // how to pass store to dispatch
+      map(response => {
+        if (response) {
+          this.store.dispatch(new authActions.LoginSuccess(response.uid)); }
+        }
+      )).subscribe();
 
     // sub to store
     this.store.pipe(select(fromAuth.getuid)).subscribe(
-      uid => { if (uid) { this.uid = uid; this.user = this.firestore.getMyUser(uid); }} // TODO: user db load from effect. dispatch action
+      uid => {
+        this.uid = uid;
+        if (uid) { this.store.dispatch(new authActions.LoadUser(uid)); }
+      }
+    );
+
+    this.store.pipe(select(fromAuth.getSignedInUser)).subscribe(
+      user => {
+        if (user) { this.user = user; console.log(this.user);}
+      }
     );
   }
 

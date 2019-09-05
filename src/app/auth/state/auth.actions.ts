@@ -52,13 +52,13 @@ export class LogoutError implements Action {
 export class LoadUser implements Action {
     readonly type = AuthActionTypes.LoadUser;
 
-    constructor() { }
+    constructor(public payload: string) { }
 }
 
 export class LoadUserSuccess implements Action {
     readonly type = AuthActionTypes.LoadUserSuccess;
 
-    constructor(public payload: User) { }
+    constructor(public payload: User[]) { }
 }
 
 export class LoadUserError implements Action {

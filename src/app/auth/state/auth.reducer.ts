@@ -1,5 +1,5 @@
 import { User } from '../../models/auth/user';
-import { AuthActions, AuthActionTypes } from './auth.actions';
+import { AuthActions, AuthActionTypes, LoadUser, LoadUserSuccess, LoadUserError } from './auth.actions';
 import * as fromRoot from '../../state/app.state';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
@@ -9,12 +9,12 @@ export interface State extends fromRoot.State {
 }
 
 export interface UserState {
-    User: User;
+    users: User[];
     uid: string;
 }
 
 const initialState: UserState = {
-    User: undefined,
+    users: [],
     uid: undefined
 };
 
@@ -26,7 +26,7 @@ export const getuid = createSelector(
 );
 export const getSignedInUser = createSelector(
     getAuthFeatureState,
-    state => state.User
+    state => state.users[0]
 );
 
 export function reducer(state = initialState, action: AuthActions): UserState {
@@ -41,7 +41,24 @@ export function reducer(state = initialState, action: AuthActions): UserState {
         case AuthActionTypes.LogoutSuccess:
             return {
                 ...state,
-                uid: undefined
+                uid: undefined,
+                users: undefined
+            };
+
+        case AuthActionTypes.LoadUser:
+            return {
+                ...state
+            };
+
+        case AuthActionTypes.LoadUserSuccess:
+            return {
+                ...state,
+                users: action.payload
+            };
+
+        case AuthActionTypes.LoadUserError:
+            return {
+                ...state
             };
 
         // case AuthActionTypes.SetInitialDefaultValues:

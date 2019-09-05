@@ -22,40 +22,40 @@ export class FirebaseService {
     return this.afs.collection('/events').snapshotChanges();
   }
 
-  getHouseholds() {
-    return this.afs.collection('/household').snapshotChanges();
-  }
-
-  getMyHouseholds(uid: string) {
-    return this.afs.collection('/household', ref => ref.where('UserID' , '==', uid)).snapshotChanges();
-  }
-
   getPayments() {
     return this.afs.collection('/payments').snapshotChanges();
+  }
+
+  getHouseholds() {
+    return this.afs.collection('/household').snapshotChanges();
   }
 
   getUsers() {
     return this.afs.collection('/users').snapshotChanges();
   }
 
-  getMyUser(uid: string) {
-    return this.afs.collection('/users', ref => ref.where('UserID', '==', uid)).snapshotChanges();
-  }
-
   getLists() {
     return this.afs.collection(`/lists`).valueChanges();
   }
 
+  getMyHouseholds(uid: string) {
+    return this.afs.collection('/household', ref => ref.where('userId' , '==', uid)).valueChanges();
+  }
+
+  getMyUser(uid: string) {
+    return this.afs.collection('/users', ref => ref.where('userId', '==', uid)).valueChanges();
+  }
+
   createPayment(value) {
     return this.afs.collection('/payments').add({
-      Account: value.account,
-      Amount: value.amount,
-      Description: value.description,
-      PaymentDate: value.paymentDate,
-      Occurrences: value.occurrences,
-      RecurringFrequency: value.recurringFrequency,
-      RecurringYN: value.recurringYN,
-      UserId: 'G3LkTagze1by9jFarqjiksEAfel1'
+      account: value.account,
+      amount: value.amount,
+      description: value.description,
+      paymentDate: value.paymentDate,
+      occurrences: value.occurrences,
+      recurringFrequency: value.recurringFrequency,
+      recurringYN: value.recurringYN,
+      userId: 'G3LkTagze1by9jFarqjiksEAfel1'
     });
   }
 }
