@@ -8,6 +8,11 @@ import { map, tap } from 'rxjs/operators';
 // ngrx store
 import { select, Store } from '@ngrx/store';
 import * as fromAuth from '../auth/state/auth.reducer';
+import * as fromApp from '../state/app.reducer';
+import * as appActions from '../state/app.actions';
+
+// models
+import { Household } from '../models/household/household';
 
 @Component({
   selector: 'hint-home',
@@ -17,7 +22,7 @@ import * as fromAuth from '../auth/state/auth.reducer';
 export class HomeComponent implements OnInit {
 
   uid: string;
-  households = Array<any>();
+  households = [];
 
   homes: Array<any> = [
     { name: 'annettes home 1'},
@@ -32,12 +37,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.store.pipe(select(fromAuth.getuid)).subscribe(
-      uid => { this.uid = uid; }
+      uid => {
+        this.uid = uid;
+        if (uid) { this.store.dispatch(new appActions.LoadHouseholds(uid)); }
+      }
     );
 
-    // to store household in state.. or not to
-    // thinking yes: create effect and dispatch action
-
+    this.store.pipe(select(fromApp.getHouseholds)).subscribe((households: Household[]) => this.households = households);
   }
 
 }

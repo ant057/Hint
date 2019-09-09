@@ -34,17 +34,17 @@
 <div class="row justify-content-center">
   <div class="col-md-4" *ngFor="let home of households">
     <nb-card status="success">
-      <nb-card-header>{{home.payload.doc.data().Name}}</nb-card-header>
+      <nb-card-header>{{home.name}}</nb-card-header>
       <img src="../../assets/cmslhvxgarsrplkbudqx.jpg" height="300" width="100%">
       <nb-card-body>
         <div class="row">
           <div class="col-md-4">
-            <h5>Bills Due this Month </h5>
-            <h5 style="color: green;">$32,294</h5>
+            <h6>Bills Due this Month </h6>
+            <h6 style="color: green;">$32,294</h6>
           </div>
           <div class="col-md-4">
-            <h5>Events this Month </h5>
-            <h5 style="color: green;">4</h5>
+            <h6>Events this Month </h6>
+            <h6 style="color: green;">4</h6>
           </div>
           <div class="col-md-4">sometingg else</div>
         </div>
