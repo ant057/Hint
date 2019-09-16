@@ -21,24 +21,35 @@ import { Household } from '../models/household/household';
 })
 export class HomeComponent implements OnInit {
 
-  uid: string;
   households = [];
-
-  homes: Array<any> = [
-    { name: 'annettes home 1'},
-    { name: 'annettes home 2'},
-    { name: 'annettes hoem 3'},
-    { name: 'annettes home 2'},
-    { name: 'annettes hoem 3'}
+  items = [
+    {
+      title: 'Profile',
+      icon: 'person-outline',
+      link: [],
+    },
+    {
+      title: 'Change Password',
+      icon: 'lock-outline',
+      link: [],
+    },
+    {
+      title: 'Privacy Policy',
+      icon: { icon: 'checkmark-outline', pack: 'eva' },
+      link: [],
+    },
+    {
+      title: 'Logout',
+      icon: 'unlock-outline',
+      link: [],
+    },
   ];
-
   constructor(private store: Store<fromAuth.State>) { }
 
   ngOnInit() {
 
     this.store.pipe(select(fromAuth.getuid)).subscribe(
       uid => {
-        this.uid = uid;
         if (uid) { this.store.dispatch(new appActions.LoadHouseholds(uid)); }
       }
     );

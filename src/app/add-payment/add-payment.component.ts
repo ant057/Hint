@@ -1,9 +1,17 @@
+// core angular
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
 import { FirebaseService } from '../core/firebase.service';
+
+// ngrx store
+import * as fromApp from '../state/app.reducer';
+import * as appActions from '../state/app.actions';
+import { Store, select } from '@ngrx/store';
+
+// models
+import { Lists } from '../models/app/list';
 
 @Component({
   selector: 'hint-add-payment',
@@ -21,13 +29,16 @@ export class AddPaymentComponent implements OnInit {
     recurringFrequency: new FormControl('Daily'),
     occurrences: new FormControl('')
   });
-  selectedItem = 'Daily';
 
-  constructor(private firestore: FirebaseService) {
+  selectedItem = 'Daily';
+  lists: Lists[];
+
+  constructor(private firestore: FirebaseService,
+              private store: Store<fromApp.AppState>) {
   }
 
-
   ngOnInit() {
+    this.store.pipe(select(fromApp.getLists)).subscribe((lists: Lists[]) => this.lists = lists);
   }
 
   onSubmit() {

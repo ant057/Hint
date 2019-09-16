@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~firebaseui/dist/firebaseui.css';
+
 @import '../node_modules/@nebular/theme/styles/prebuilt/default.css';
 @import '../node_modules/@nebular/theme/styles/prebuilt/corporate.css';
 @import '../node_modules/@nebular/theme/styles/prebuilt/dark.css';
 @import '../node_modules/@nebular/theme/styles/prebuilt/cosmic.css';
+@import '~firebaseui/dist/firebaseui.css';
+
+body {
+    font-weight: 400;
+};

@@ -1,3 +1,3 @@
 export interface Lists {
-    list: Array<string>;
+    values: Array<any>;
 }

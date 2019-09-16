@@ -51,7 +51,7 @@ export class AuthComponent implements OnDestroy, OnInit {
 
     this.store.pipe(select(fromAuth.getSignedInUser)).subscribe(
       user => {
-        if (user) { this.user = user; console.log(this.user);}
+        if (user) { this.user = user; console.log(this.user); }
       }
     );
   }
