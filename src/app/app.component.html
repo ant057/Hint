@@ -27,16 +27,6 @@
     <div (click)="cycleTheme()"> Change Theme! - {{ theme }}
     </div>
     <div>
-      <nb-card>
-        <nb-card-body>
-          <nb-actions size="medium">
-            <nb-action icon="credit-card-outline" nbTooltip="Add Payment" nbTooltipPlacement="top"
-              nbTooltipStatus="success" (click)="openAddPayment()"></nb-action>
-            <nb-action icon="calendar-outline" nbTooltip="Add Event" nbTooltipPlacement="top" nbTooltipStatus="success"
-              (click)="openAddEvent()"></nb-action>
-          </nb-actions>
-        </nb-card-body>
-      </nb-card>
       <router-outlet></router-outlet>
     </div>
   </nb-layout-column>

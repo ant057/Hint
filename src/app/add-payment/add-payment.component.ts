@@ -20,25 +20,26 @@ import { Lists } from '../models/app/list';
 })
 export class AddPaymentComponent implements OnInit {
 
-  addPaymentForm = new FormGroup({
+  lists: Lists[];
+  addPaymentForm: FormGroup = new FormGroup({
     account: new FormControl(''),
     amount: new FormControl(''),
     description: new FormControl(''),
     paymentDate: new FormControl(''),
     recurringYN: new FormControl(),
-    recurringFrequency: new FormControl('Daily'),
+    recurringFrequency: new FormControl(),
     occurrences: new FormControl('')
   });
-
-  selectedItem = 'Daily';
-  lists: Lists[];
 
   constructor(private firestore: FirebaseService,
               private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit() {
-    this.store.pipe(select(fromApp.getLists)).subscribe((lists: Lists[]) => this.lists = lists);
+    this.store.pipe(select(fromApp.getLists)).subscribe((lists: Lists[]) => {
+      this.lists = lists;
+      this.addPaymentForm.controls.recurringFrequency.patchValue(this.lists[0].values[0]); // default
+    });
   }
 
   onSubmit() {
@@ -46,11 +47,11 @@ export class AddPaymentComponent implements OnInit {
     console.warn(this.addPaymentForm.value);
 
     this.firestore.createPayment(this.addPaymentForm.value)
-    .then(
-      res => {
-        this.addPaymentForm.reset();
-      }
-    );
+      .then(
+        res => {
+          this.addPaymentForm.reset();
+        }
+      );
   }
 
   cbClick() {

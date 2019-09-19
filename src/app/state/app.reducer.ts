@@ -8,11 +8,13 @@ import { Household } from '../models/household/household';
 export interface AppState {
     lists: Lists[];
     households: Household[];
+    householdsLoading: boolean;
 }
 
 const initialState: AppState = {
     lists: undefined,
-    households: []
+    households: undefined,
+    householdsLoading: false
 };
 
 const getAppFeatureState = createFeatureSelector<AppState>('app');
@@ -26,6 +28,11 @@ export const getLists = createSelector(
 export const getHouseholds = createSelector(
     getAppFeatureState,
     state => state.households
+);
+
+export const getHouseholdsLoading = createSelector(
+    getAppFeatureState,
+    state => state.householdsLoading
 );
 
 export function reducer(state = initialState, action: AppActions): AppState {
@@ -49,18 +56,21 @@ export function reducer(state = initialState, action: AppActions): AppState {
 
         case AppActionTypes.LoadHouseholds:
             return {
-                ...state
+                ...state,
+                householdsLoading: true
             };
 
         case AppActionTypes.LoadHouseholdsSuccess:
             return {
                 ...state,
-                households: action.payload
+                households: action.payload,
+                householdsLoading: false
             };
 
         case AppActionTypes.LoadHouseholdsError:
             return {
-                ...state
+                ...state,
+                householdsLoading: false
             };
 
         default:

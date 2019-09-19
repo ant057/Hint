@@ -17,8 +17,8 @@
       <label class="label">
         Recurring Frequency:
       </label>
-      <nb-select fullWidth formControlName="recurringFrequency" [(selected)]="selectedItem">
-        <nb-option *ngFor="let val of lists[0].values" value="val">{{val}}</nb-option>
+      <nb-select fullWidth formControlName="recurringFrequency">
+        <nb-option *ngFor="let val of lists[0].values" [value]="val">{{val}}</nb-option>
       </nb-select>
     </div>
     <div *ngIf="addPaymentForm.value.recurringYN" class="col-md-6">

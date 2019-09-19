@@ -11,3 +11,7 @@
     width: 16rem;
     top: 4.75rem;
 }
+
+nb-sidebar:first-child {
+    top: 0rem; 
+}

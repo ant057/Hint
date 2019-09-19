@@ -30,7 +30,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // ui
 import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbButtonModule, NbInputModule,
   NbDatepickerModule, NbRadioModule, NbCardModule, NbMenuModule, NbActionsModule, NbWindowModule,
-  NbListModule, NbTooltipModule, NbCheckboxModule, NbSelectComponent, NbSelectModule} from '@nebular/theme';
+  NbListModule, NbTooltipModule, NbCheckboxModule, NbSelectComponent, NbSelectModule, NbSpinnerModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 // firestore
@@ -80,6 +80,7 @@ import { fromEventPattern } from 'rxjs';
     NbTooltipModule,
     NbCheckboxModule,
     NbSelectModule,
+    NbSpinnerModule,
     StoreModule.forRoot({ app: reducer}),
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({

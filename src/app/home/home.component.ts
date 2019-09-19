@@ -22,39 +22,33 @@ import { Household } from '../models/household/household';
 export class HomeComponent implements OnInit {
 
   households = [];
-  items = [
-    {
-      title: 'Profile',
-      icon: 'person-outline',
-      link: [],
-    },
-    {
-      title: 'Change Password',
-      icon: 'lock-outline',
-      link: [],
-    },
-    {
-      title: 'Privacy Policy',
-      icon: { icon: 'checkmark-outline', pack: 'eva' },
-      link: [],
-    },
-    {
-      title: 'Logout',
-      icon: 'unlock-outline',
-      link: [],
-    },
-  ];
+  householdsLoading;
+  componentLoading = true;
+
   constructor(private store: Store<fromAuth.State>) { }
 
   ngOnInit() {
 
+    this.store.pipe(select(fromApp.getHouseholdsLoading)).subscribe(
+      (householdsLoading: boolean) => {
+        this.householdsLoading = householdsLoading;
+      });
+
     this.store.pipe(select(fromAuth.getuid)).subscribe(
       uid => {
-        if (uid) { this.store.dispatch(new appActions.LoadHouseholds(uid)); }
+        if (uid) {
+          this.store.dispatch(new appActions.LoadHouseholds(uid));
+          this.componentLoading = false;
+        }
       }
     );
 
-    this.store.pipe(select(fromApp.getHouseholds)).subscribe((households: Household[]) => this.households = households);
-  }
+    this.store.pipe(select(fromApp.getHouseholds)).subscribe(
+      (households: Household[]) => {
+        if (households) {
+          this.households = households;
+        }
+      });
 
+  }
 }

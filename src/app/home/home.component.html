@@ -1,59 +1,51 @@
-<!-- <nb-layout-header fixed>Hint</nb-layout-header> 
-
-    <nb-sidebar>
-      <hint-nav>
-      </hint-nav>
-    </nb-sidebar>
-
-    <nb-layout-column>
-      <div *ngIf="myValue$ | async as household"> <br/>{{household.Name}}
-
-        <router-outlet></router-outlet>
-        <hint-add-payment></hint-add-payment>
-        <hint-add-event></hint-add-event>
-      </div>
-    </nb-layout-column>
--->
-<!-- <div class="row justify-content-center">
-  <div class="col-md-4" *ngFor="let home of homes">
-    <div *ngIf="myValue">
-      <nb-card status="success">
-        <nb-card-header>{{myValue}}</nb-card-header>
-        <nb-card-body>
-          A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-          Originally, nebula was a name for any diffuse astronomical object,
-          including galaxies beyond the Milky Way.<br />
+<div *ngIf="householdsLoading; else content">
+  <nb-card [nbSpinner]="true" nbSpinnerStatus="success">
+    <nb-card-body>
+      LOADING..
+    </nb-card-body>
+  </nb-card>
+</div>
+<ng-template #content>
+  <div *ngIf="households.length > 0">
+    <nb-card>
+      <nb-card-body>
+        <nb-actions size="small">
+          <nb-action icon="credit-card-outline" nbTooltip="Add Payment" nbTooltipPlacement="top"
+            nbTooltipStatus="success" (click)="openAddPayment()"></nb-action>
+          <nb-action icon="calendar-outline" nbTooltip="Add Event" nbTooltipPlacement="top" nbTooltipStatus="success"
+            (click)="openAddEvent()"></nb-action>
+        </nb-actions>
+      </nb-card-body>
+    </nb-card>
+    <div class="row justify-content-center">
+      <div class="col-md-4" *ngFor="let home of households">
+        <nb-card status="success">
+          <nb-card-header>{{home.name}}</nb-card-header>
           <img src="../../assets/cmslhvxgarsrplkbudqx.jpg" height="300" width="100%">
-        </nb-card-body>
-        <nb-card-footer>By Wikipedia</nb-card-footer>
-      </nb-card>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-md-4">
+                <h6>Bills Due this Month </h6>
+                <h6 style="color: green;">$32,294</h6>
+              </div>
+              <div class="col-md-4">
+                <h6>Events this Month </h6>
+                <h6 style="color: green;">4</h6>
+              </div>
+              <div class="col-md-4">sometingg else</div>
+            </div>
+          </nb-card-body>
+          <nb-card-footer>By Wikipedia</nb-card-footer>
+        </nb-card>
+      </div>
     </div>
   </div>
-</div> -->
-
-<nb-card>
-  <nb-menu [items]="items">
-  </nb-menu>
-</nb-card> 
-<div class="row justify-content-center">
-  <div class="col-md-4" *ngFor="let home of households">
-    <nb-card status="success">
-      <nb-card-header>{{home.name}}</nb-card-header>
-      <img src="../../assets/cmslhvxgarsrplkbudqx.jpg" height="300" width="100%">
+  <div *ngIf="!componentLoading && households.length === 0">
+    <nb-card>
       <nb-card-body>
-        <div class="row">
-          <div class="col-md-4">
-            <h6>Bills Due this Month </h6>
-            <h6 style="color: green;">$32,294</h6>
-          </div>
-          <div class="col-md-4">
-            <h6>Events this Month </h6>
-            <h6 style="color: green;">4</h6>
-          </div>
-          <div class="col-md-4">sometingg else</div>
-        </div>
+        You haven't added a household yet.. why don't you get started?
+        <button nbButton size="medium" status="success">Add Household</button>
       </nb-card-body>
-      <nb-card-footer>By Wikipedia</nb-card-footer>
     </nb-card>
   </div>
-</div>
+</ng-template>
