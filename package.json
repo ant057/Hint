@@ -27,6 +27,7 @@
     "@ngrx/effects": "^8.2.0",
     "@ngrx/store": "^8.0.1",
     "@ngrx/store-devtools": "^8.0.1",
+    "component": "^1.1.0",
     "core-js": "^2.5.4",
     "eva-icons": "^1.1.1",
     "firebase": "^5.9.2",

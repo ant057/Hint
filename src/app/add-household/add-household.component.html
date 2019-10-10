@@ -1,0 +1,46 @@
+<form [formGroup]="addHouseholdForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-12">
+            <label class="label">
+              Household Name:
+            </label>
+            <input nbInput fullWidth type="text" formControlName="name">
+          </div>
+          <div class="col-md-6">
+            <label class="label">
+              Address 1:
+            </label>
+            <input nbInput fullWidth type="text" formControlName="add1">
+      
+          </div>
+          <div class="col-md-6">
+            <label class="label">
+              Address 2:
+            </label>
+            <input nbInput fullWidth type="text" formControlName="add2">
+      
+          </div>
+      
+          <div class="col-md-4">
+            <label class="label">
+              City:
+            </label>
+            <input nbInput fullWidth type="text" formControlName="city">
+      
+          </div>
+          <div class="col-md-4">
+            <label class="label">
+              Zip:
+            </label>
+            <input nbInput fullWidth type="number" formControlName="zip">
+      
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <div class="col-md-12">
+            <button nbButton type="submit" [disabled]="!addHouseholdForm.valid">Submit</button>
+          </div>
+        </div>
+      </form>

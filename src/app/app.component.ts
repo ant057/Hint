@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AddPaymentComponent } from './add-payment/add-payment.component';
-import { NbWindowService, NbThemeService } from '@nebular/theme';
-import { AddEventComponent } from './add-event/add-event.component';
 
+// ngrx
 import * as fromApp from './state/app.reducer';
 import * as appActions from './state/app.actions';
-
 import { Store, select } from '@ngrx/store';
-import { Lists } from './models/app/list';
+
+// nebular
+import { NbThemeService, NbThemeModule } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -15,19 +14,15 @@ import { Lists } from './models/app/list';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnDestroy, OnInit {
-
-  lists: Lists[];
   theme: string;
 
-  constructor(private windowService: NbWindowService,
-              private themeService: NbThemeService,
-              private store: Store<fromApp.AppState>) {
+  constructor(
+    private store: Store<fromApp.AppState>,
+    private themeService: NbThemeService) {
   }
 
   ngOnInit() {
     this.store.dispatch(new appActions.LoadLists());
-    this.store.pipe(select(fromApp.getLists)).subscribe((lists: Lists[]) => this.lists = lists);
-
     this.theme = this.themeService.currentTheme;
   }
 
@@ -45,13 +40,4 @@ export class AppComponent implements OnDestroy, OnInit {
   ngOnDestroy() {
 
   }
-
-  openAddPayment() {
-    this.windowService.open(AddPaymentComponent, { title: `Add Payment` });
-  }
-
-  openAddEvent() {
-    this.windowService.open(AddEventComponent, { title: `Add Event` });
-  }
-
 }

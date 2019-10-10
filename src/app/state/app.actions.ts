@@ -8,7 +8,8 @@ export enum AppActionTypes {
     LoadListsError = '[Load Lists] Error',
     LoadHouseholds = '[Load Households] Try',
     LoadHouseholdsSuccess = '[Load Households] Successful',
-    LoadHouseholdsError = '[Load Households] Error'
+    LoadHouseholdsError = '[Load Households] Error',
+    SelectHousehold = '[Select Household] Success'
 }
 
 export class LoadLists implements Action {
@@ -47,9 +48,16 @@ export class LoadHouseholdsError implements Action {
     constructor() { }
 }
 
+export class SelectHousehold implements Action {
+    readonly type = AppActionTypes.SelectHousehold;
+
+    constructor(public payload: Household) { }
+}
+
 export type AppActions = LoadLists
     | LoadListsSuccess
     | LoadListsError
     | LoadHouseholds
     | LoadHouseholdsError
-    | LoadHouseholdsSuccess;
+    | LoadHouseholdsSuccess
+    | SelectHousehold;

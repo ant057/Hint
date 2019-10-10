@@ -2,18 +2,19 @@ import { AppActions, AppActionTypes } from './app.actions';
 import { Lists } from '../models/app/list';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { PRIMARY_OUTLET } from '@angular/router';
 import { Household } from '../models/household/household';
 
 export interface AppState {
     lists: Lists[];
     households: Household[];
+    selectedHousehold: Household;
     householdsLoading: boolean;
 }
 
 const initialState: AppState = {
     lists: undefined,
     households: undefined,
+    selectedHousehold: undefined,
     householdsLoading: false
 };
 
@@ -28,6 +29,11 @@ export const getLists = createSelector(
 export const getHouseholds = createSelector(
     getAppFeatureState,
     state => state.households
+);
+
+export const getSelectedHousehold = createSelector(
+    getAppFeatureState,
+    state => state.selectedHousehold
 );
 
 export const getHouseholdsLoading = createSelector(
@@ -71,6 +77,12 @@ export function reducer(state = initialState, action: AppActions): AppState {
             return {
                 ...state,
                 householdsLoading: false
+            };
+
+        case AppActionTypes.SelectHousehold:
+            return{
+                ...state,
+                selectedHousehold: action.payload
             };
 
         default:

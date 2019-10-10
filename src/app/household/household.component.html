@@ -1,0 +1,20 @@
+<div class="row" *ngIf="selectedHousehold$ | async as selectedHousehold">
+        <div class="col-md-1">
+          <img src="../../assets/home.jpg" height="135" width="135" style="border-radius: 50%">
+        </div>
+        <div class="col-md-11">
+          <nb-card width="90%">
+            <nb-card-body>
+              <nb-actions size="small">
+                <nb-action>
+                  <h6>{{ selectedHousehold.name }}</h6>
+                </nb-action>
+                <nb-action icon="credit-card-outline" nbTooltip="Add Payment" nbTooltipPlacement="top"
+                  nbTooltipStatus="success" (click)="openAddPayment()"></nb-action>
+                <nb-action icon="calendar-outline" nbTooltip="Add Event" nbTooltipPlacement="top"
+                  nbTooltipStatus="success" (click)="openAddEvent()"></nb-action>
+              </nb-actions>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>

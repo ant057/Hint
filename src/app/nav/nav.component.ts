@@ -15,6 +15,11 @@ export class NavComponent implements OnInit {
       link: '/home'
     },
     {
+      title: 'Household',
+      icon: 'star',
+      link: '/household'
+    },
+    {
       title: 'Dashboard',
       icon: 'grid-outline',
       link: '/dashboard'

@@ -39,6 +39,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { fromEventPattern } from 'rxjs';
+import { AddHouseholdComponent } from './add-household/add-household.component';
+import { HouseholdComponent } from './household/household.component';
 
 @NgModule({
   declarations: [
@@ -48,11 +50,14 @@ import { fromEventPattern } from 'rxjs';
     DashboardComponent,
     AddPaymentComponent,
     AddEventComponent,
-    CalendarComponent
+    CalendarComponent,
+    AddHouseholdComponent,
+    HouseholdComponent
   ],
   entryComponents: [
     AddPaymentComponent,
-    AddEventComponent
+    AddEventComponent,
+    AddHouseholdComponent
   ],
   imports: [
     CoreModule,
