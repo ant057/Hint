@@ -56,14 +56,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.households$ = this.store.pipe(select(fromApp.getHouseholds));
   }
 
-  openAddPayment() {
-    this.windowService.open(AddPaymentComponent, { title: `Add Payment` });
-  }
-
-  openAddEvent() {
-    this.windowService.open(AddEventComponent, { title: `Add Event` });
-  }
-
   openHouseholdEvent() {
     this.windowService.open(AddHouseholdComponent, { title: `Add Household` });
   }
